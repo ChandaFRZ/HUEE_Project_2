@@ -14,6 +14,6 @@
                 msg: 'Welcome to Your Vue.js PWA',
                 messages: ['Hey John', 'Howdy Paco']
             }
-        },
+        }
     }
 </script>
