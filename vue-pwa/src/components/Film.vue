@@ -9,7 +9,7 @@
       <p>Langugate: {{ film.original_language }}</p>
     </div>
 
-    <md-button class="md-icon-button">
+    <md-button v-on:click="handleFavoriteFilm" class="md-icon-button">
       <font-awesome-icon class="unmarked" :icon="['fas', 'heart']"/>
     </md-button>
 
@@ -28,6 +28,11 @@
     components: {
       FontAwesomeIcon
     },
+    methods: {
+      handleFavoriteFilm() {
+
+      }
+    }
   }
 </script>
 

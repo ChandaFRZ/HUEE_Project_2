@@ -2,14 +2,22 @@
   <div class="hello">
     <Search v-on:SearchRequested="handleSearch"></Search>
 
+    <h2>Popular Films</h2>
     <ul v-if="popularFilms.length > 0">
-
       <li v-for="film in popularFilms">
         <film v-bind:film="film"></film>
       </li>
-
     </ul>
-    <!--<film v-bind:films="films"></film>-->
+
+    <div v-if="searchFilms.length > 0">
+      <h2>Search Results</h2>
+      <ul>
+        <li v-for="film in searchFilms">
+          <film v-bind:film="film"></film>
+        </li>
+      </ul>
+    </div>
+
     <button v-on:click="logout">Logout</button>
 
   </div>
@@ -28,7 +36,7 @@
     },
     data() {
       return {
-        films: [],
+        searchFilms: [],
         popularFilms: [],
         apiKey: '49b8bfd',
         movieDbApiKeyV3: '9044afcc39f9e991ed70c79944242022'
@@ -36,15 +44,15 @@
     },
     methods: {
       handleSearch(query) {
-        this.films = []
+        this.searchFilms = []
 
-          fetch('http://www.omdbapi.com/?t=' + query + '&apikey=' + this.apiKey)
+          fetch('https://api.themoviedb.org/3/search/movie?&api_key=' + this.movieDbApiKeyV3 + '&query=' + query)
             .then((res) => {
               return res.json()
             })
             .then((res) => {
-              this.films = res;
-              console.log(res);
+              this.searchFilms = res.results;
+              this.searchFilms.splice(5, 15);
             })
       },
       fetchPopularityMovies() {

@@ -17,10 +17,8 @@
         if (this.query == "") {
           alert("Nothing entered for a search!")
         } else {
-          console.log(this.query);
           this.$emit('SearchRequested', this.query)
         }
-
       }
     }
   }
