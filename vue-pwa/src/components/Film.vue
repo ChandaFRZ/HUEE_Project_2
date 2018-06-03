@@ -9,7 +9,7 @@
       <p>Langugate: {{ film.original_language }}</p>
     </div>
 
-    <md-button v-on:click="handleFavoriteFilm" class="md-icon-button">
+    <md-button v-on:click="addFavoriteFilm" class="md-icon-button">
       <font-awesome-icon class="unmarked" :icon="['fas', 'heart']"/>
     </md-button>
 
@@ -20,6 +20,9 @@
   import FontAwesome from '@fortawesome/vue-fontawesome'
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
   import {faUser} from '@fortawesome/fontawesome-free-solid'
+  import {db, favoriteFilmsRef, userRef } from "../main";
+  import Firebase from 'firebase'
+
 
   export default {
     props: [
@@ -29,8 +32,15 @@
       FontAwesomeIcon
     },
     methods: {
-      handleFavoriteFilm() {
+      addFavoriteFilm() {
+        const email = Firebase.auth().currentUser.email;
 
+        const data = {uid: email, favoriteFilms: {
+            film: this.film
+          }}
+        favoriteFilmsRef.push(data)
+
+        userRef.push(data);
       }
     }
   }

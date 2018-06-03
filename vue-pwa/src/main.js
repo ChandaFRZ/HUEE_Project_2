@@ -3,7 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import firebase from 'firebase'
+
+import Firebase from 'firebase'
+import VueFire from 'vuefire'
+Vue.use(VueFire)
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -15,9 +18,8 @@ fontawesome.library.add(faHeart)
 
 Vue.config.productionTip = false
 
-let app;
 
-// Initialize Firebase
+
 const config = {
   apiKey: "AIzaSyBuQsZBp0bTxXiwtrgOp2pWFPp-zle8CiE",
   authDomain: "up-2-movie.firebaseapp.com",
@@ -26,17 +28,26 @@ const config = {
   storageBucket: "",
   messagingSenderId: "970638759471"
 };
+Firebase.initializeApp(config)
 
-firebase.initializeApp(config)
-firebase.auth().onAuthStateChanged(function(user) {
+export let app;
+export const db = Firebase.database();
+
+export const userRef = db.ref('user')
+export const favoriteFilmsRef = db.ref('films')
+
+
+Firebase.auth().onAuthStateChanged(function(user) {
   if(!app) {
-
     app = new Vue({
       el: '#app',
       template: '<App/>',
       components: { App },
       router
     })
+
   }
+
+
 })
 
