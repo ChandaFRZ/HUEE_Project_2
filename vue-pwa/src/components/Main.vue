@@ -57,7 +57,6 @@
           .then((res) => {
             this.popularFilms = res.results;
             this.popularFilms.splice(5, 15);
-            console.log(this.popularFilms);
           })
       },
       logout: function () {

@@ -5,6 +5,14 @@ import App from './App'
 import router from './router'
 import firebase from 'firebase'
 
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+Vue.use(VueMaterial)
+
+import { faHeart } from '@fortawesome/fontawesome-free-solid'
+import fontawesome from '@fortawesome/fontawesome'
+fontawesome.library.add(faHeart)
+
 Vue.config.productionTip = false
 
 let app;

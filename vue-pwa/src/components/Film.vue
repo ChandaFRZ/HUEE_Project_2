@@ -9,15 +9,25 @@
       <p>Langugate: {{ film.original_language }}</p>
     </div>
 
+    <md-button class="md-icon-button">
+      <font-awesome-icon class="unmarked" :icon="['fas', 'heart']"/>
+    </md-button>
+
   </div>
 </template>
 
 <script>
+  import FontAwesome from '@fortawesome/vue-fontawesome'
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+  import {faUser} from '@fortawesome/fontawesome-free-solid'
 
   export default {
     props: [
       'film'
-    ]
+    ],
+    components: {
+      FontAwesomeIcon
+    },
   }
 </script>
 
@@ -30,5 +40,13 @@
 
   h4 {
     margin-top: 23px;
+  }
+
+  .unmarked {
+    color: #adadad;
+  }
+
+  .marked {
+    color: red;
   }
 </style>
