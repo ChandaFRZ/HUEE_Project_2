@@ -3,13 +3,32 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import firebase from 'firebase'
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+let app;
+
+// Initialize Firebase
+const config = {
+  apiKey: "AIzaSyBuQsZBp0bTxXiwtrgOp2pWFPp-zle8CiE",
+  authDomain: "up-2-movie.firebaseapp.com",
+  databaseURL: "https://up-2-movie.firebaseio.com",
+  projectId: "up-2-movie",
+  storageBucket: "",
+  messagingSenderId: "970638759471"
+};
+
+firebase.initializeApp(config)
+firebase.auth().onAuthStateChanged(function(user) {
+  if(!app) {
+
+    app = new Vue({
+      el: '#app',
+      template: '<App/>',
+      components: { App },
+      router
+    })
+  }
 })
+

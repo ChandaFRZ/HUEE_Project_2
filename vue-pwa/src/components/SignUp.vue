@@ -1,10 +1,10 @@
 <template>
-  <div class="login">
-    <h3>Sign In</h3>
+  <div class="sign-up">
+    <h3>Registration</h3>
     <input type="text" v-model="email" placeholder="Email"><br>
     <input type="password" v-model="password" placeholder="Password"><br>
-    <button v-on:click="signIn">Connection</button>
-    <p>You don't have an account? You can <router-link to="/sign-up">create one</router-link> here.</p>
+    <button v-on:click="signUp">Sign up</button>
+    <span>or go back to <router-link to="/login">login</router-link></span>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
   import firebase from 'firebase'
 
   export default {
-    name: 'login',
+    name: 'signUp',
     data: function() {
       return {
         email: '',
@@ -20,10 +20,10 @@
       }
     },
     methods: {
-      signIn: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+      signUp: function() {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            this.$router.replace('hello')
+            this.$router.replace('login')
           },
           (err) => {
             alert('Oops. Something went wrong (' + err.message + ')!')
@@ -36,7 +36,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .login {
+  .sign-up {
     margin-top: 40px;
   }
 
@@ -52,13 +52,9 @@
     cursor: pointer;
   }
 
-  p {
-    margin-top: 40px;
-    font-size: 13px;
-  }
-
-  p a {
-    text-decoration: underline;
-    cursor: pointer;
+  span {
+    display: blocK;
+    margin-top: 20px;
+    font-size: 11px;
   }
 </style>
