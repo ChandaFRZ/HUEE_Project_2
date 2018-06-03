@@ -1,15 +1,12 @@
 <template>
   <div class="film">
-    <div v-bind="films">
-      <img :src="films.Poster">
-      <h4>Name: {{ films.Title }}</h4>
-      <h4>Actors: {{ films.Actors }}</h4>
-      <h4>Film IMDB  Score: {{ films.imdbRating }}</h4>
-      <h4>Country: {{ films.Country }}</h4>
-      <h4>Year: {{ films.Year }}</h4>
-      <h4>Director: {{ films.Director }}</h4>
-      <h4>Genre: {{ films.Genre }}</h4>
-      <h4>Writer: {{ films.Writer }}</h4>
+
+    <div v-bind="film">
+      <img :src="'https://image.tmdb.org/t/p/w500' + film.poster_path">
+      <h4>{{ film.title }}</h4>
+      <p>Vote-Average: {{ film.vote_average }}</p>
+      <p>Release Date: {{ film.release_date }}</p>
+      <p>Langugate: {{ film.original_language }}</p>
     </div>
 
   </div>
@@ -19,7 +16,7 @@
 
   export default {
     props: [
-      'films'
+      'film'
     ]
   }
 </script>
@@ -28,6 +25,7 @@
 <style>
   .film img {
     margin-top: 40px;
+    width: 50%;
   }
 
   h4 {
