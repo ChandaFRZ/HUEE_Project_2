@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <Search v-on:SearchRequested="handleSearch"></Search>
 
     <h2>Popular Films</h2>
