@@ -1,9 +1,9 @@
 <template>
-    <div class="movie">
+    <div class="actor">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" :src="imageUrl" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">{{ title }} {{ movieid }}</h5>
+                <h5 class="card-title">{{ title }} {{ actorid }}</h5>
                 <p class="card-text">
                     {{ description }}
                 </p>
@@ -18,7 +18,7 @@
 
     export default {
 
-        name: 'movie',
+        name: 'actor',
         data() {
             return {
                 title: 'default title',
@@ -28,13 +28,13 @@
             }
         },
         props: {
-            movieid: Number,
+            actorid: Number,
         },
         methods: {
             star: function () {
                 console.log('star and unstar function')
             },
-            getMovie: function (movieId) {
+            getMoviesForActor: function (actorid) {
                 //TODO: load movie from db and set title, image etc
             }
         },
@@ -43,7 +43,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-    .movie {
+    .actor {
         display: inline-block;
     }
 </style>
