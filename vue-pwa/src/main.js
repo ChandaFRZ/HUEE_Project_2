@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import firebase from 'firebase'
+import BootstrapVue from 'bootstrap-vue'
 
 import Firebase from 'firebase'
 import VueFire from 'vuefire'
@@ -16,7 +18,11 @@ import { faHeart } from '@fortawesome/fontawesome-free-solid'
 import fontawesome from '@fortawesome/fontawesome'
 fontawesome.library.add(faHeart)
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 
@@ -45,9 +51,6 @@ Firebase.auth().onAuthStateChanged(function(user) {
       components: { App },
       router
     })
-
   }
-
-
 })
 
