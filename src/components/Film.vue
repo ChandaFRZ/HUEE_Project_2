@@ -17,12 +17,9 @@
 </template>
 
 <script>
-  import FontAwesome from '@fortawesome/vue-fontawesome'
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-  import {faUser} from '@fortawesome/fontawesome-free-solid'
-  import {db, favoriteFilmsRef, userRef } from "../main";
   import Firebase from 'firebase'
-
+  import {db} from '../main'
 
   export default {
     props: [
@@ -32,15 +29,11 @@
       FontAwesomeIcon
     },
     methods: {
-      addFavoriteFilm() {
-        const email = Firebase.auth().currentUser.email;
+      addFavoriteFilm () {
+        const uid = Firebase.auth().currentUser.uid
 
-        const data = {uid: email, favoriteFilms: {
-            film: this.film
-          }}
-        favoriteFilmsRef.push(data)
-
-        userRef.push(data);
+        const userRef = db.ref('user/' + uid + '/favorite-films/' + this.film.id)
+        userRef.set({film: this.film})
       }
     }
   }

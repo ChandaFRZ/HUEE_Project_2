@@ -46,14 +46,14 @@
       handleSearch(query) {
         this.searchFilms = []
 
-          fetch('https://api.themoviedb.org/3/search/movie?&api_key=' + this.movieDbApiKeyV3 + '&query=' + query)
-            .then((res) => {
-              return res.json()
-            })
-            .then((res) => {
-              this.searchFilms = res.results;
-              this.searchFilms.splice(5, 15);
-            })
+        fetch('https://api.themoviedb.org/3/search/movie?&api_key=' + this.movieDbApiKeyV3 + '&query=' + query)
+          .then((res) => {
+            return res.json()
+          })
+          .then((res) => {
+            this.searchFilms = res.results
+            this.searchFilms.splice(5, 15)
+          })
       },
       fetchPopularityMovies() {
         this.popularFilms = []
@@ -63,8 +63,8 @@
             return res.json()
           })
           .then((res) => {
-            this.popularFilms = res.results;
-            this.popularFilms.splice(5, 15);
+            this.popularFilms = res.results
+            this.popularFilms.splice(5, 15)
           })
       },
       logout: function () {
@@ -73,7 +73,7 @@
         })
       }
     },
-    beforeMount() {
+    beforeMount () {
       this.fetchPopularityMovies()
     },
   }
